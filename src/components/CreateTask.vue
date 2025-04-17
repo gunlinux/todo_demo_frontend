@@ -24,10 +24,16 @@ export default {
       description: ''
     });
     const router = useRouter();
+    const config  = {
+           headers: {
+            'id': '1',
+            'NotAuth': '666',
+            }
+        }
 
     async function createTask() {
       try {
-        await axios.post('/tasks', newTask);
+        await axios.post('/api/tasks', newTask, config);
         alert('Task created successfully!');
         router.push('/');
       } catch (error) {

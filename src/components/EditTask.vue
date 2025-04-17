@@ -22,10 +22,17 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const currentTask = reactive({});
+    const config  = {
+           headers: {
+            'id': '1',
+            'NotAuth': '666',
+            }
+        }
+
 
     async function getTaskById(id) {
       try {
-        const response = await axios.get(`/tasks/${id}`);
+        const response = await axios.get(`/api/tasks/${id}`, config);
         Object.assign(currentTask, response.data);
       } catch (error) {
         console.error('Error fetching task:', error);
@@ -34,7 +41,7 @@ export default {
 
     async function updateTask() {
       try {
-        await axios.patch(`/tasks/${route.params.id}`, currentTask);
+        await axios.patch(`/api/tasks/${route.params.id}`, currentTask, config);
         alert('Task updated successfully!');
         router.push('/');
       } catch (error) {

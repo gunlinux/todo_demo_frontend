@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="tasks.length > 0">
     <h2>Tasks</h2>
     <ul class="list-group">
@@ -28,10 +29,17 @@ import axios from 'axios';
 export default {
   setup() {
     const tasks = ref([]);
+    const config  = {
+           headers: {
+            'id': '1',
+            'NotAuth': '666',
+            }
+        }
+
 
     async function getTasks() {
       try {
-        const response = await axios.get('/api/tasks');
+        const response = await axios.get('/api/tasks', config);
         tasks.value = response.data;
       } catch (error) {
         console.error('Error fetching tasks:', error);
@@ -41,7 +49,7 @@ export default {
     async function deleteTask(id) {
       if (confirm('Are you sure you want to delete this task?')) {
         try {
-          await axios.delete(`/tasks/${id}`);
+          await axios.delete(`/api/tasks/${id}`, config);
           getTasks(); // Refresh the list after deletion
         } catch (error) {
           console.error('Error deleting task:', error);

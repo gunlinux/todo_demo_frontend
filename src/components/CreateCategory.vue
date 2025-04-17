@@ -19,10 +19,16 @@ export default {
       title: ''
     });
     const router = useRouter();
+    const config  = {
+           headers: {
+            'id': '1',
+            'NotAuth': '666',
+            }
+        }
 
     async function createCategory() {
       try {
-        await axios.post('/api/categories/', newCategory);
+        await axios.post('/api/categories/', newCategory, config);
         alert('Category created successfully!');
         router.push('/');
       } catch (error) {
