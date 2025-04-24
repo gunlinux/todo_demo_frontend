@@ -4,6 +4,8 @@ import CreateTask from '@/components/CreateTask.vue'
 import CreateCategory from '@/components/CreateCategory.vue'
 import EditTask from '@/components/EditTask.vue'
 import UserForm from '@/components/UserForm.vue'
+import { useAuthStore } from '../stores/auth';
+
 
 const routes = [
   {
@@ -41,3 +43,12 @@ const router = createRouter({
 })
 
 export default router
+
+router.beforeEach((to, from, next) => {
+  const auth = useAuthStore();
+  if (to.meta.requiresAuth && !auth.token) {
+    next('/register');
+  } else {
+    next();
+  }
+});

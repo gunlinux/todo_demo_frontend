@@ -21,8 +21,8 @@ export default {
     const router = useRouter();
     const config  = {
            headers: {
-            'id': '1',
-            'NotAuth': '666',
+            'id': '3',
+            'token': 'asd',
             }
         }
 
