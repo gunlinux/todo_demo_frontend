@@ -12,6 +12,7 @@
 import { reactive } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
 
 export default {
   setup() {
@@ -19,12 +20,14 @@ export default {
       title: ''
     });
     const router = useRouter();
-    const config  = {
-           headers: {
-            'id': '3',
-            'token': 'asd',
-            }
-        }
+    const authStore = useAuthStore();
+
+    const config = {
+      headers: {
+        'token': authStore.token,
+        'id': authStore.userId,
+      }
+    };
 
     async function createCategory() {
       try {

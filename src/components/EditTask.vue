@@ -16,18 +16,21 @@
 import { reactive, onMounted } from 'vue';
 import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
 
 export default {
   setup() {
     const route = useRoute();
     const router = useRouter();
     const currentTask = reactive({});
-    const config  = {
-           headers: {
-            'id': '1',
-            'NotAuth': '666',
-            }
-        }
+    const authStore = useAuthStore();
+
+    const config = {
+      headers: {
+        'token': authStore.token,
+        'id': authStore.userId,
+      }
+    };
 
 
     async function getTaskById(id) {

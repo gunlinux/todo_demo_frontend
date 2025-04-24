@@ -25,7 +25,7 @@ export default {
 
     async function register() {
       try {
-        const response = await axios.post('/', { username: username.value });
+        const response = await axios.post('/user/', { username: username.value });
         const { id, token } = response.data;
         auth.setAuth(token, id);
         router.push('/'); // на главную или куда угодно

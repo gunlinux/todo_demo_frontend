@@ -4,6 +4,7 @@ import CreateTask from '@/components/CreateTask.vue'
 import CreateCategory from '@/components/CreateCategory.vue'
 import EditTask from '@/components/EditTask.vue'
 import UserForm from '@/components/UserForm.vue'
+import RegUser from '@/components/RegUser.vue'
 import { useAuthStore } from '../stores/auth';
 
 
@@ -34,6 +35,11 @@ const routes = [
     path: '/users/new',
     name: 'NewUser',
     component: UserForm
+  },
+  {
+    path: '/register',
+    name: 'RegUser',
+    component: RegUser
   }
 ]
 

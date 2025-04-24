@@ -18,6 +18,7 @@
           <router-link to="/create-task" class="nav-item nav-link">Create Task</router-link>
           <router-link to="/create-category" class="nav-item nav-link">Create Category</router-link>
           <router-link to="/users/new" class="nav-item nav-link">Add User</router-link>
+          <router-link to="/register" class="nav-item nav-link">Register</router-link>
         </div>
       </div>
     </nav>

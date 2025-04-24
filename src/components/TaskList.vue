@@ -25,16 +25,19 @@
 <script>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import { useAuthStore } from '@/stores/auth';
 
 export default {
   setup() {
     const tasks = ref([]);
-    const config  = {
-           headers: {
-            'id': '1',
-            'NotAuth': '666',
-            }
-        }
+    const authStore = useAuthStore();
+
+    const config = {
+      headers: {
+        'token': authStore.token,
+        'id': authStore.userId,
+      }
+    };
 
 
     async function getTasks() {

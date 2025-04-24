@@ -41,6 +41,7 @@
 import { reactive, ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth';
 
       const categories = ref([]);
 
@@ -70,10 +71,12 @@ export default {
     const rawDeadline = ref('');
     const categories = ref([]);
     const router = useRouter();
+    const authStore = useAuthStore();
 
     const config = {
       headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
+        'token': authStore.token,
+        'id': authStore.userId,
       }
     };
 
