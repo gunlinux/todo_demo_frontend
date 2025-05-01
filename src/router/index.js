@@ -40,6 +40,15 @@ const routes = [
     path: '/register',
     name: 'RegUser',
     component: RegUser
+  },
+  {
+    path: '/logout',
+    name: 'Logout',
+    beforeEnter: (to, from, next) => {
+      const auth = useAuthStore();
+      auth.logout();
+      next('/register');
+    }
   }
 ]
 

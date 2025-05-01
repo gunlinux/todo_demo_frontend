@@ -15,10 +15,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <router-link to="/create-task" class="nav-item nav-link">Create Task</router-link>
-          <router-link to="/create-category" class="nav-item nav-link">Create Category</router-link>
-          <router-link to="/users/new" class="nav-item nav-link">Add User</router-link>
-          <router-link to="/register" class="nav-item nav-link">Register</router-link>
+          <template v-if="isAuthenticated">
+            <router-link to="/create-task" class="nav-item nav-link">Create Task</router-link>
+            <router-link to="/create-category" class="nav-item nav-link">Create Category</router-link>
+            <router-link to="/users/new" class="nav-item nav-link">Add User</router-link>
+            <router-link to="/logout" class="nav-item nav-link">Logout</router-link>
+          </template>
+          <template v-else>
+            <router-link to="/register" class="nav-item nav-link">Register</router-link>
+          </template>
         </div>
       </div>
     </nav>
@@ -29,8 +34,19 @@
 </template>
 
 <script>
+import { useAuthStore } from './stores/auth'
+import { computed } from 'vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  setup() {
+    const auth = useAuthStore()
+    const isAuthenticated = computed(() => !!auth.token)
+
+    return {
+      isAuthenticated
+    }
+  }
 }
 </script>
 
