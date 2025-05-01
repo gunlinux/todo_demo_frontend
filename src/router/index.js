@@ -5,6 +5,7 @@ import CreateCategory from '@/components/CreateCategory.vue'
 import EditTask from '@/components/EditTask.vue'
 import UserForm from '@/components/UserForm.vue'
 import RegUser from '@/components/RegUser.vue'
+import AuthLink from '@/components/AuthLink.vue'
 import { useAuthStore } from '../stores/auth';
 
 
@@ -49,6 +50,11 @@ const routes = [
       auth.logout();
       next('/register');
     }
+  },
+  {
+    path: '/auth/link',
+    name: 'AuthLink',
+    component: AuthLink
   }
 ]
 
